@@ -1,0 +1,24 @@
+{
+  "name": "satgraph",
+  "version": "0.1.0",
+  "description": "",
+  "homepage": "https://github.com/satgraph/satgraph#readme",
+  "bugs": {
+    "url": "https://github.com/satgraph/satgraph/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satgraph/satgraph.git"
+  },
+  "license": "MIT",
+  "author": "Chris Beams <chris@beams.io>",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "electron": "^37.2.3"
+  }
+}
