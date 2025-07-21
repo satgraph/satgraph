@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8"/>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self'"/>
+    <title>Add Account</title>
+</head>
+<body>
+<h2>Add Account</h2>
+<form id="account-form">
+    <div class="form-group">
+        <label for="account-name">Account Name:</label>
+        <input type="text" id="account-name" required>
+    </div>
+    <div class="form-group">
+        <label for="account-balance">Balance:</label>
+        <input type="number" id="account-balance" step="0.01" required>
+    </div>
+    <div class="button-group">
+        <button type="button" id="close-modal-button">Cancel</button>
+        <button type="submit" id="submit-account-button">OK</button>
+    </div>
+</form>
+</body>
+<script src="modal.js"></script>
+</html>

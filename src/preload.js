@@ -10,7 +10,7 @@ contextBridge.exposeInMainWorld('versions', {
 })
 
 contextBridge.exposeInMainWorld('services', {
-    ping: () => ipcRenderer.invoke('ping')
+    send: (channel) => ipcRenderer.send(channel),
+    sendData: (channel, data) => ipcRenderer.send(channel, data),
+    on: (channel, callback) => ipcRenderer.on(channel, (_, data) => callback(data)),
 })
-
-console.log('preload.js loaded')

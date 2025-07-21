@@ -13,7 +13,7 @@
   "license": "MIT",
   "author": "Chris Beams <chris@beams.io>",
   "type": "commonjs",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
