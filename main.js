@@ -20,7 +20,7 @@ const createWindow = () => {
     return win
 }
 
-function createMenu(mainWindow) {
+const createMenu = (mainWindow) => {
     const template = [
         {
             label: 'App',
