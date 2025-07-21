@@ -1,5 +1,5 @@
 const func = async () => {
-    const response = await window.versions.ping()
+    const response = await window.services.ping()
     console.log(response) // prints out 'pong'
 }
 

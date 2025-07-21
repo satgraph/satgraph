@@ -7,8 +7,10 @@ contextBridge.exposeInMainWorld('versions', {
     node: () => process.versions.node,
     chrome: () => process.versions.chrome,
     electron: () => process.versions.electron,
+})
+
+contextBridge.exposeInMainWorld('services', {
     ping: () => ipcRenderer.invoke('ping')
-    // we can also expose variables, not just functions
 })
 
 console.log('preload.js loaded')
