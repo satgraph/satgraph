@@ -1,3 +1,6 @@
+// Track all account balances
+let accounts = [];
+
 document.getElementById('open-modal-button').addEventListener('click', () => {
     openModal();
 });
@@ -11,7 +14,21 @@ function openModal() {
     window.services.send('open-modal');
 }
 
+function calculateNetWorth() {
+    const totalBalance = accounts.reduce((sum, account) => sum + account.balance, 0);
+    return totalBalance;
+}
+
+function updateNetWorthDisplay() {
+    const netWorth = calculateNetWorth();
+    const netWorthElement = document.getElementById('net-worth-value');
+    netWorthElement.textContent = `$${netWorth.toFixed(2)}`;
+}
+
 function addAccountToList(accountData) {
+    // Add account to our tracking array
+    accounts.push(accountData);
+
     const accountsContainer = document.getElementById('accounts-container');
 
     // Create account item element
@@ -34,4 +51,7 @@ function addAccountToList(accountData) {
 
     // Add account item to accounts container
     accountsContainer.appendChild(accountItem);
+
+    // Update the Net Worth display
+    updateNetWorthDisplay();
 }
