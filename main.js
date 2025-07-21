@@ -34,6 +34,18 @@ function createMenu(mainWindow) {
                 { type: 'separator' },
                 { role: 'quit' }
             ]
+        },
+        {
+            label: 'View',
+            submenu: [
+                {
+                    label: 'Toggle Developer Tools',
+                    accelerator: 'CmdOrCtrl+Option+I',
+                    click: (_, window) => {
+                        if (window) window.webContents.toggleDevTools();
+                    }
+                }
+            ]
         }
     ]
 
