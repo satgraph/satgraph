@@ -7,7 +7,7 @@ const {
 } = require('electron')
 const path = require("node:path")
 
-const createWindow = () => {
+const createMainWindow = () => {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
@@ -63,6 +63,6 @@ const createMenu = (mainWindow) => {
 
 app.whenReady().then(() => {
     ipcMain.handle('ping', () => 'pong')
-    const mainWindow = createWindow()
+    const mainWindow = createMainWindow()
     createMenu(mainWindow)
 })
