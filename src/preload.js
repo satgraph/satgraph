@@ -14,4 +14,5 @@ contextBridge.exposeInMainWorld('services', {
     sendData: (channel, data) => ipcRenderer.send(channel, data),
     on: (channel, callback) => ipcRenderer.on(channel, (_, data) => callback(data)),
     loadAccounts: async () => await ipcRenderer.invoke('load-accounts'),
+    deleteAccount: async (accountId) => await ipcRenderer.invoke('delete-account', accountId),
 })

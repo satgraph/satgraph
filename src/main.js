@@ -73,6 +73,15 @@ const initModalWindow = (mainWindow) => {
     ipcMain.handle('load-accounts', () => {
         return store.get('accounts', [])
     })
+
+    // Handle request to delete an account
+    ipcMain.handle('delete-account', (event, accountId) => {
+        const accounts = store.get('accounts', [])
+        const updatedAccounts = accounts.filter(account => account.id !== accountId)
+        store.set('accounts', updatedAccounts)
+        // Return the updated accounts list
+        return updatedAccounts
+    })
 }
 
 const initMenu = (mainWindow) => {

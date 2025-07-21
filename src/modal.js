@@ -21,6 +21,7 @@ function submitAccount() {
     }
 
     const accountData = {
+        id: Date.now().toString(), // Add a unique identifier using timestamp
         name: accountName,
         balance: parseFloat(accountBalance)
     }

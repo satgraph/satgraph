@@ -40,6 +40,38 @@ function updateNetWorthDisplay() {
     netWorthElement.textContent = `$${netWorth.toFixed(2)}`
 }
 
+// Function to confirm account deletion with a dialog
+async function confirmDeleteAccount(accountId) {
+    const confirmed = confirm('Are you sure you want to delete this account?')
+
+    if (confirmed) {
+        try {
+            // Call the deleteAccount method from preload.js
+            const updatedAccounts = await window.services.deleteAccount(accountId)
+
+            // Remove the account from the UI
+            removeAccountFromUI(accountId)
+
+            // Update the accounts array with the new list
+            accounts = updatedAccounts
+
+            // Update the net worth display
+            updateNetWorthDisplay()
+        } catch (error) {
+            console.error('Failed to delete account:', error)
+            alert('Failed to delete account. Please try again.')
+        }
+    }
+}
+
+// Function to remove an account from the UI
+function removeAccountFromUI(accountId) {
+    const accountElement = document.querySelector(`.account-item[data-account-id="${accountId}"]`)
+    if (accountElement) {
+        accountElement.remove()
+    }
+}
+
 function addAccountToList(accountData) {
     // Add account to our tracking array
     accounts.push(accountData)
@@ -49,6 +81,7 @@ function addAccountToList(accountData) {
     // Create account item element
     const accountItem = document.createElement('div')
     accountItem.className = 'account-item'
+    accountItem.dataset.accountId = accountData.id // Store account ID in the DOM element
 
     // Create account name element
     const accountName = document.createElement('div')
@@ -60,9 +93,16 @@ function addAccountToList(accountData) {
     accountBalance.className = 'account-balance'
     accountBalance.textContent = `Balance: $${accountData.balance.toFixed(2)}`
 
+    // Create delete button
+    const deleteButton = document.createElement('button')
+    deleteButton.className = 'delete-button'
+    deleteButton.textContent = 'Delete'
+    deleteButton.addEventListener('click', () => confirmDeleteAccount(accountData.id))
+
     // Add elements to account item
     accountItem.appendChild(accountName)
     accountItem.appendChild(accountBalance)
+    accountItem.appendChild(deleteButton)
 
     // Add account item to accounts container
     accountsContainer.appendChild(accountItem)
