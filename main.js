@@ -31,7 +31,9 @@ const createMenu = (mainWindow) => {
                         dialog.showMessageBox(mainWindow, {
                             title: 'About Satgraph',
                             message: 'Satgraph',
-                            detail: `This app is using Chrome (v${process.versions.chrome}), Node.js (v${process.versions.node}), and Electron (v${process.versions.electron})`,
+                            detail: `This app is using Chrome (v${process.versions.chrome}), ` +
+                                `Node.js (v${process.versions.node}), ` +
+                                `and Electron (v${process.versions.electron})`,
                             buttons: ['OK'],
                             type: 'info'
                         })
