@@ -5,7 +5,7 @@ const {
     dialog,
     ipcMain,
 } = require('electron')
-const path = require("node:path");
+const path = require("node:path")
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -50,7 +50,7 @@ const createMenu = (mainWindow) => {
                     label: 'Toggle Developer Tools',
                     accelerator: 'CmdOrCtrl+Option+I',
                     click: (_, window) => {
-                        if (window) window.webContents.toggleDevTools();
+                        if (window) window.webContents.toggleDevTools()
                     }
                 }
             ]
