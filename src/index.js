@@ -1,6 +1,21 @@
 // Track all account balances
 let accounts = []
 
+// Load saved accounts when the application starts
+window.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const savedAccounts = await window.services.loadAccounts()
+        if (savedAccounts && savedAccounts.length > 0) {
+            // Load each saved account into the UI
+            savedAccounts.forEach(account => {
+                addAccountToList(account)
+            })
+        }
+    } catch (error) {
+        console.error('Failed to load accounts:', error)
+    }
+})
+
 document.getElementById('open-modal-button').addEventListener('click', () => {
     openModal()
 })

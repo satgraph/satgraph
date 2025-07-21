@@ -7,6 +7,11 @@ const {
 } = require('electron')
 
 const path = require("node:path")
+// Import electron-store with default export
+const Store = require('electron-store').default
+
+// Initialize the store for account persistence
+const store = new Store()
 
 app.whenReady().then(() => {
     main()
@@ -55,7 +60,18 @@ const initModalWindow = (mainWindow) => {
     ipcMain.on('submit-account', (event, accountData) => {
         // Forward the account data to the main window
         mainWindow.webContents.send('account-data', accountData)
+
+        // Save the account data to the store
+        const accounts = store.get('accounts', [])
+        accounts.push(accountData)
+        store.set('accounts', accounts)
+
         modalWindow.hide()
+    })
+
+    // Handle request to load accounts
+    ipcMain.handle('load-accounts', () => {
+        return store.get('accounts', [])
     })
 }
 
